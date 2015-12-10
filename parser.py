@@ -24,7 +24,7 @@ def writeListToFile(list, filename):
     newfile = filename + "_lineprotocol.txt"
     for x in list:
         x = str(x) + "\n"
-        #print(x),
+        print(x),
         writeLineToFile(newfile, x)
     return newfile
 
@@ -46,28 +46,18 @@ def writeLineToFile(newfile, line):
 
 #Parses json datetime format to unixtimestamp, in case of none it retruns 0
 def parseDatetime(s):
-    if s is not "none":
-        value = datetime.datetime.strptime(s, "Date(%Y,%m,%d,%H,%M,%S)")
-    else:
-        value = 0
+    value = datetime.datetime.strptime(s, "Date(%Y,%m,%d,%H,%M,%S)")
     return value
 
 #Parses json number format to float, in case of none it retruns 0
 def parseNumber(s):
-    if s is not "none":
-        value = s
-        if "." not in str(value):
-            value = str(value) + ".0"
-    else:
-        value = 0
-    return value
+    if "." not in str(s):
+        s = str(s) + ".0"
+    return s
 
 #Parses json string format to lineprotocol compatible string, in case of none it retruns "null"
 def parseString(s):
-    if s is not "none":
-        value = '"' + escapeChar(s) + '"'
-    else:
-        value = '"null"'
+    value = '"' + escapeChar(s) + '"'
     return value
 
 #Parses json value to lineprotocol compatible value
@@ -89,15 +79,15 @@ def parseFromList(list, cols):
     for v in list:
         id = cols[j]["id"]
         type = cols[j]["type"]
+        j += 1
         if id == "Time":
             timestamp = parseDatetime(v["v"])
         else:
             try:
                 value = parseValue(type, v["v"])
             except TypeError:
-                value = parseValue(type, "none")
+                continue
             datapoint += (str(id) + "=" + str(value) + str(","))
-        j += 1
     return(datapoint[:-1] + " " + str(time.mktime(timestamp.timetuple()))[:-2] + "000000000")
 
 #Adds one line to influx database
@@ -115,4 +105,4 @@ def addListToDB(db, list):
 
 #Main function
 if __name__ == '__main__':
-    addFileToDB('brewpi', writeListToFile(readFromFile("mashtest-26-11-2015-2015-11-27.json"), "mashtest-26-11-2015-2015-11-27"))
+    addListToDB('brewpi', readFromFile("mashtest-26-11-2015-2015-11-26.json"))
