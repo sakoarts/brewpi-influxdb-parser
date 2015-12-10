@@ -24,7 +24,7 @@ def writeListToFile(list, filename):
     newfile = filename + "_lineprotocol.txt"
     for x in list:
         x = str(x) + "\n"
-        print(x),
+        #print(x),
         writeLineToFile(newfile, x)
     return newfile
 
