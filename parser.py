@@ -31,12 +31,9 @@ def writeListToFile(list, filename):
 #Inserts \ in front of specal characters to escape them form lineprotocol interpeter
 def escapeChar(value):
     value = str(value)
-    if " " in value:
-        value = value.replace(" ", "\ ")
-    if "," in value:
-        value = value.replace(",", "\,")
-    if "=" in value:
-        value = value.replace("=", "\=")
+    value = value.replace(" ", "\ ")
+    value = value.replace(",", "\,")
+    value = value.replace("=", "\=")
     return value
 
 #Writes one line to a file
@@ -74,6 +71,7 @@ def parseValue(x, v):
 
 #Parses list representing a datapoint to a string compatible with lineprotocol
 def parseFromList(list, cols):
+    print(cols)
     datapoint = ""
     j = 0
     for v in list:
@@ -88,7 +86,7 @@ def parseFromList(list, cols):
             except TypeError:
                 continue
             datapoint += (str(id) + "=" + str(value) + str(","))
-    return(datapoint[:-1] + " " + str(time.mktime(timestamp.timetuple()))[:-2] + "000000000")
+    return datapoint[:-1] + " " + str(time.mktime(timestamp.timetuple()))[:-2] + "000000000"
 
 #Adds one line to influx database
 def addLineToDB(db, line):
@@ -105,4 +103,5 @@ def addListToDB(db, list):
 
 #Main function
 if __name__ == '__main__':
-    addListToDB('brewpi', readFromFile("mashtest-26-11-2015-2015-11-26.json"))
+    # addListToDB('brewpi', readFromFile("mashtest-26-11-2015-2015-11-26.json"))
+    writeListToFile(readFromFile("mashtest-26-11-2015-2015-11-26.json"), 'brewpi')
