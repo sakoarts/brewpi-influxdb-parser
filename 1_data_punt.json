@@ -1,0 +1,318 @@
+{
+  "kind": "Control",
+  "pids": [
+    {
+      "kind": "Pid",
+      "name": "heater1",
+      "enabled": false,
+      "setPoint": {
+        "kind": "SetPointSimple",
+        "value": null
+      },
+      "inputSensor": {
+        "kind": "TempSensor",
+        "name": "fridge",
+        "sensor": {
+          "kind": "TempSensorDisconnected",
+          "value": null,
+          "connected": false
+        }
+      },
+      "inputError": 0,
+      "Kp": 10,
+      "Ti": 600,
+      "Td": 60,
+      "p": 0,
+      "i": 0,
+      "d": 0,
+      "actuatorIsNegative": false,
+      "outputActuator": {
+        "kind": "ActuatorPwm",
+        "value": 0,
+        "period": 4,
+        "minVal": 0,
+        "maxVal": 100,
+        "target": {
+          "kind": "ActuatorMutexDriver",
+          "mutexGroup": {
+            "kind": "ActuatorMutexGroup",
+            "deadTime": 1800000,
+            "lastActiveTime": 4293167296
+          },
+          "target": {
+            "kind": "ActuatorNop",
+            "state": false
+          }
+        }
+      }
+    },
+    {
+      "kind": "Pid",
+      "name": "heater2",
+      "enabled": true,
+      "setPoint": {
+        "kind": "SetPointSimple",
+        "value": null
+      },
+      "inputSensor": {
+        "kind": "TempSensor",
+        "name": "beer2",
+        "sensor": {
+          "kind": "TempSensorDisconnected",
+          "value": null,
+          "connected": false
+        }
+      },
+      "inputError": 0,
+      "Kp": 10,
+      "Ti": 600,
+      "Td": 60,
+      "p": 0,
+      "i": 0,
+      "d": 0,
+      "actuatorIsNegative": false,
+      "outputActuator": {
+        "kind": "ActuatorPwm",
+        "value": 0,
+        "period": 4,
+        "minVal": 0,
+        "maxVal": 100,
+        "target": {
+          "kind": "ActuatorMutexDriver",
+          "mutexGroup": {
+            "kind": "ActuatorMutexGroup",
+            "deadTime": 1800000,
+            "lastActiveTime": 4293167296
+          },
+          "target": {
+            "kind": "ActuatorNop",
+            "state": false
+          }
+        }
+      }
+    },
+    {
+      "kind": "Pid",
+      "name": "cooler",
+      "enabled": false,
+      "setPoint": {
+        "kind": "SetPointSimple",
+        "value": null
+      },
+      "inputSensor": {
+        "kind": "TempSensor",
+        "name": "fridge",
+        "sensor": {
+          "kind": "TempSensorDisconnected",
+          "value": null,
+          "connected": false
+        }
+      },
+      "inputError": 0,
+      "Kp": 10,
+      "Ti": 1800,
+      "Td": 200,
+      "p": 0,
+      "i": 0,
+      "d": 0,
+      "actuatorIsNegative": true,
+      "outputActuator": {
+        "kind": "ActuatorPwm",
+        "value": 0,
+        "period": 1200,
+        "minVal": 0,
+        "maxVal": 100,
+        "target": {
+          "kind": "ActuatorMutexDriver",
+          "mutexGroup": {
+            "kind": "ActuatorMutexGroup",
+            "deadTime": 1800000,
+            "lastActiveTime": 4293167296
+          },
+          "target": {
+            "kind": "ActuatorTimeLimited",
+            "minOnTime": 120,
+            "minOffTime": 180,
+            "maxOnTime": 65535,
+            "active": false,
+            "target": {
+              "kind": "ActuatorNop",
+              "state": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "Pid",
+      "name": "beer2fridge",
+      "enabled": false,
+      "setPoint": {
+        "kind": "SetPointSimple",
+        "value": null
+      },
+      "inputSensor": {
+        "kind": "TempSensor",
+        "name": "beer1",
+        "sensor": {
+          "kind": "TempSensorDisconnected",
+          "value": null,
+          "connected": false
+        }
+      },
+      "inputError": 0,
+      "Kp": 2,
+      "Ti": 7200,
+      "Td": 1200,
+      "p": 0,
+      "i": 0,
+      "d": 0,
+      "actuatorIsNegative": false,
+      "outputActuator": {
+        "kind": "ActuatorSetPoint",
+        "targetSetPoint": {
+          "kind": "SetPointSimple",
+          "value": null
+        },
+        "targetSensor": {
+          "kind": "TempSensor",
+          "name": "fridge",
+          "sensor": {
+            "kind": "TempSensorDisconnected",
+            "value": null,
+            "connected": false
+          }
+        },
+        "referenceSetPoint": {
+          "kind": "SetPointSimple",
+          "value": null
+        },
+        "output": 0,
+        "achieved": -0.0039,
+        "minimum": -10,
+        "maximum": 10
+      }
+    }
+  ],
+  "sensors": [
+    {
+      "kind": "TempSensor",
+      "name": "fridge",
+      "sensor": {
+        "kind": "TempSensorDisconnected",
+        "value": null,
+        "connected": false
+      }
+    },
+    {
+      "kind": "TempSensor",
+      "name": "beer1",
+      "sensor": {
+        "kind": "TempSensorDisconnected",
+        "value": null,
+        "connected": false
+      }
+    },
+    {
+      "kind": "TempSensor",
+      "name": "beer2",
+      "sensor": {
+        "kind": "TempSensorDisconnected",
+        "value": null,
+        "connected": false
+      }
+    }
+  ],
+  "actuators": [
+    {
+      "kind": "ActuatorPwm",
+      "value": 0,
+      "period": 1200,
+      "minVal": 0,
+      "maxVal": 100,
+      "target": {
+        "kind": "ActuatorMutexDriver",
+        "mutexGroup": {
+          "kind": "ActuatorMutexGroup",
+          "deadTime": 1800000,
+          "lastActiveTime": 4293167296
+        },
+        "target": {
+          "kind": "ActuatorTimeLimited",
+          "minOnTime": 120,
+          "minOffTime": 180,
+          "maxOnTime": 65535,
+          "active": false,
+          "target": {
+            "kind": "ActuatorNop",
+            "state": false
+          }
+        }
+      }
+    },
+    {
+      "kind": "ActuatorPwm",
+      "value": 0,
+      "period": 4,
+      "minVal": 0,
+      "maxVal": 100,
+      "target": {
+        "kind": "ActuatorMutexDriver",
+        "mutexGroup": {
+          "kind": "ActuatorMutexGroup",
+          "deadTime": 1800000,
+          "lastActiveTime": 4293167296
+        },
+        "target": {
+          "kind": "ActuatorNop",
+          "state": false
+        }
+      }
+    },
+    {
+      "kind": "ActuatorPwm",
+      "value": 0,
+      "period": 4,
+      "minVal": 0,
+      "maxVal": 100,
+      "target": {
+        "kind": "ActuatorMutexDriver",
+        "mutexGroup": {
+          "kind": "ActuatorMutexGroup",
+          "deadTime": 1800000,
+          "lastActiveTime": 4293167296
+        },
+        "target": {
+          "kind": "ActuatorNop",
+          "state": false
+        }
+      }
+    }
+  ],
+  "setpoints": [
+    {
+      "kind": "SetPointNamed",
+      "name": "beer1set",
+      "setPoint": {
+        "kind": "SetPointSimple",
+        "value": null
+      }
+    },
+    {
+      "kind": "SetPointNamed",
+      "name": "beer2set",
+      "setPoint": {
+        "kind": "SetPointSimple",
+        "value": null
+      }
+    },
+    {
+      "kind": "SetPointNamed",
+      "name": "fridgeset",
+      "setPoint": {
+        "kind": "SetPointSimple",
+        "value": null
+      }
+    }
+  ]
+}
